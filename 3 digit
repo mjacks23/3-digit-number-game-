@@ -1,0 +1,53 @@
+#Morgan Jackson
+#11/09/22
+#Write a Python module that reads a 3-digit number from a file (e.g. user_pick.txt)
+#and compares that number to a 3-digit computer-generated number (HINT:  each digit needs to be generated separately).
+#The result of this comparison will be as follows:
+
+#If the user's number (pick) contains 1 number from the computer generated pick, then print a statement of a $1 award
+#If the user's number (pick) contains 2 numbers from the computer generated pick, then print a statement of a $100 award
+#If the user's number (pick) contains 3 numbers from the computer generated pick, then print a statement of a $1000 award
+#If the user's number (pick) is an EXACT MATCH (same 3 numbers in the same order), then print a statement of a $10000 award
+
+
+import random
+from random import randint
+# generate 3 random numbers for lottery 
+computer_generate1 = random.randint(1,9)
+computer_generate2 = random.randint(1,9)
+computer_generate3 = random.randint(1,9)
+#create a variable 
+realNumber = str(computer_generate1) + str(computer_generate2) + str(computer_generate3)
+# open numbers in read mode using with/as
+with open("numbers.txt") as f:
+    number = f.readline()
+print(number)
+print(realNumber)
+   
+
+#If the user's number (pick) is an EXACT MATCH (same 3 numbers in the same order), then print a statement of a $10000 award   
+if number == realNumber:
+    print("You won $10,000")
+#create an if elif statement for printing the differnt  computer generate options     
+count = 0
+for i in number:
+  if i == str(computer_generate1):
+      count += 1
+  elif i == str(computer_generate2):
+      count += 1
+  elif i == str(computer_generate3):
+      count += 1
+   
+#If the user's number (pick) contains 1 number from the computer generated pick, then print a statement of a $1 award
+#If the user's number (pick) contains 2 numbers from the computer generated pick, then print a statement of a $100 award
+#If the user's number (pick) contains 3 numbers from the computer generated pick, then print a statement of a $1000 award
+if count == 1:
+    print("You won $1")
+elif count == 2:
+    print("You won $100")
+elif count == 3:
+    print("You won $1000")
+elif count == 0:
+    print("Sorry you lose")
+
+ 
